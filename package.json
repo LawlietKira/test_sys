@@ -28,12 +28,14 @@
     "redbox-react": "^1.2.6",
     "stream-http": "^2.8.3",
     "style-loader": "^0.19.1",
+    "url-loader": "^1.0.1",
     "webpack": "^2.7.0",
     "webpack-dev-server": "^2.11.2"
   },
   "scripts": {
+    "build": "webpack --config webpack.pack.config.js",
     "dev": "webpack-dev-server --hot",
-    "start": "webpack-dev-server --config webpack.pro.config.js",
+    "start": "webpack-dev-server --config webpack.pack.config.js",
     "create": "node ./src/utils/XmlsToJson.js"
   }
 }

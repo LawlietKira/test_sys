@@ -3,7 +3,7 @@ let webpack = require('webpack'),
     HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './index.js',
+    entry: ['./index.js'],
     output: {
         path: __dirname + '/build',
         //publicPath: '/assets/',
@@ -12,8 +12,8 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(jpg|png|gif)$/,
-                loader: 'url-loader?limit=819200&name=build/images/[name].[hash:8].[ext]'
+                test: /\.png$/,
+                loader: 'url-loader?limit=819200&name=build/image/[name].[hash:8].[ext]'
             },
             {
                 test: /\.s?css$/,
@@ -33,19 +33,14 @@ module.exports = {
             }
         ]
     },
-
-    plugins: [
+	plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './index.html'
         }),
-
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ],
-
-    devtool: 'eval-source-map',
-
     devServer: {
     	host:'0.0.0.0',
         // hot: true,

@@ -20,7 +20,7 @@ class App extends React.Component {
 		return(
 			<div>
 			  	<div id="nav">
-					<Link to="/"><img src='assets/image/logo.png' id="logo" /></Link>
+					<Link to="/"><img src='../assets/image/logo.png' id="logo" /></Link>
 					<Menu theme="dark" style={{width: 200}} mode="inline">
 						<SubMenu key="menu1" title={<span><Icon type="calendar" /><span>考题信息</span></span>}>
 					  		<Menu.Item key="1">
