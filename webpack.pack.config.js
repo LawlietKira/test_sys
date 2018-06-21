@@ -35,7 +35,7 @@ module.exports = {
     },
 	plugins: [
         new HtmlWebpackPlugin({
-            filename: 'index.html',
+            filename: '天融信题库.html',
             template: './index.html'
         }),
         new webpack.optimize.OccurrenceOrderPlugin(),
