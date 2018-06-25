@@ -2,7 +2,9 @@ import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import React, { Component } from 'react';
 import { Link } from 'react-router'
 import ReactDOM from 'react-dom';
-import logo from '../assets/image/logo.png'
+import logo from '../assets/image/logo.png';
+import testMessageJson from '../assets/json/tests.json';
+
 require('./App.css')
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -17,17 +19,26 @@ class App extends React.Component {
 		this.setState({ collapsed });
 	}
 	render() {
+		let testLists = testMessageJson.map(function(item){
+			return item.name;
+		})
 		return(
 			<div>
 			  	<div id="nav">
 					<Link to="/"><img src={logo} id="logo" /></Link>
 					<Menu theme="dark" style={{width: 200}} mode="inline">
 						<SubMenu key="menu1" title={<span><Icon type="calendar" /><span>考题信息</span></span>}>
-					  		<Menu.Item key="1">
-								<Icon type="appstore-o" />
-								<span className="nav-text">考题详情</span>
-								<Link to="/testForm"></Link>
-						    </Menu.Item>
+							{
+								testLists.map(function(item, index){
+									return (
+										<Menu.Item key={index + 1}>
+											<Icon type="appstore-o" />
+											<span className="nav-text">{item}</span>
+											<Link to={"/testForm/" + index}></Link>
+									    </Menu.Item>
+									)
+								})
+							}
 				    	</SubMenu>
 				    </Menu>
 				</div>

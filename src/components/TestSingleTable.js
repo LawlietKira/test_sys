@@ -3,8 +3,9 @@ import { Button } from 'antd';
 import React, { Component } from 'react'
 import { Modal, Table, Form, Icon , Row , Col} from 'antd';
 
+var Constant = require('../utils/Constant.js');
 var Utils = require('../utils/Utils.js')
-const ans = ['A', 'B', 'C', 'D']
+const chosen_code = Constant.CHOSEN_CODE;
 
 var TestSingleTable = React.createClass({
 	//var TestSingleTable = React.createClass({
@@ -14,20 +15,20 @@ var TestSingleTable = React.createClass({
 			index: this.props.index,
 			nextQuestion: this.props.nextQuestion,
 			prevQuestion: this.props.prevQuestion,
-			disabled: this.props.inAnswer === true ? false : true
+			disabled: !this.props.inAnswer
 		})
 	},
 	componentWillReceiveProps :function(){
 //		console.log('componentWillReceiveProps',this.props.inAnswer)
 		this.setState({
-			disabled : this.props.inAnswer === true ? false : true
+			disabled : !this.props.inAnswer
 		})
 //		this.state.disabled = this.props.inAnswer === true ? false : true
 	},
 	onChange: function(e){
 //		console.log('radio checked', e.target.value);
 		this.state.question[this.state.index].myValue = e.target.value;
-		this.state.question[this.state.index].myValueNumber = ans[e.target.value]
+		this.state.question[this.state.index].myValueNumber = chosen_code[e.target.value]
 		this.state.question[this.state.index].isDone = true;
 		this.setState({
 			value: e.target.value,

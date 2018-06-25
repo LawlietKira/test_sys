@@ -36,6 +36,6 @@
     "build": "webpack --config webpack.pack.config.js",
     "dev": "webpack-dev-server --hot",
     "start": "webpack-dev-server --config webpack.pack.config.js",
-    "create": "node ./src/utils/XmlsToJson.js"
+    "create": "node ./src/utils/XlsxToJson.js"
   }
 }

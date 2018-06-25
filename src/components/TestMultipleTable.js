@@ -3,11 +3,12 @@ import { Button } from 'antd';
 import React, { Component } from 'react'
 import { Modal, Table, Form, Icon,Checkbox,Row,Col } from 'antd';
 
-const CheckboxGroup = Checkbox.Group;
-
+var Constant = require('../utils/Constant.js');
 var Utils = require('../utils/Utils.js')
+
+const CheckboxGroup = Checkbox.Group;
 const RadioGroup = Radio.Group;
-const ans = ['A', 'B', 'C', 'D']
+const chosen_code = Constant.CHOSEN_CODE;
 
 const plainOptions = ['Apple', 'Pear', 'Orange'];
 const defaultCheckedList = ['Apple', 'Orange'];
@@ -27,14 +28,14 @@ var TestSingleTable = React.createClass({
 	componentWillReceiveProps :function(){
 //		console.log('componentWillReceiveProps',this.props.inAnswer)
 		this.setState({
-			disabled : this.props.inAnswer === true ? false : true
+			disabled : !this.props.inAnswer
 		})
 //		this.state.disabled = this.props.inAnswer === true ? false : true
 	},
 	onChange: function(value){
 		this.state.question[this.state.index].myValue = value;
 		this.state.question[this.state.index].myValueNumber = value.reduce(function(pre, cur){
-			return pre + ans[cur]
+			return pre + chosen_code[cur]
 		}, '')
 		this.state.question[this.state.index].isDone = true;
 		this.setState({

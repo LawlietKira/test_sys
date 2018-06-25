@@ -6,7 +6,6 @@ module.exports = {
     entry: ['./index.js'],
     output: {
         path: __dirname + '/build',
-        //publicPath: '/assets/',
         filename: 'bundle.js'
     },
     module: {
@@ -35,7 +34,7 @@ module.exports = {
     },
 	plugins: [
         new HtmlWebpackPlugin({
-            filename: '天融信题库.html',
+            filename: 'index.html',
             template: './index.html'
         }),
         new webpack.optimize.OccurrenceOrderPlugin(),

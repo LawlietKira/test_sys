@@ -7,7 +7,7 @@ import TestForm from './src/components/TestForm'
 render((
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-	    <Route path="/testForm" component={TestForm}/>
+	    <Route path="/testForm/:id" component={TestForm}/>
     </Route> 
   </Router>
 ), document.getElementById('root'));

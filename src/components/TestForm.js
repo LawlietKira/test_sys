@@ -13,18 +13,33 @@ const FormItem = Form.Item;
 var times = 1;
 var TestForm = React.createClass({
 	getInitialState: function() {
+		let testsId= this.props.params.id,
+			roundTests = this.roundTests(tests[testsId].data);
 		return {
+			testsId: testsId,
+			testData: tests[testsId].data,
 			currentIndex: 0,
 			inAnswer: true,
-			questions: Utils.cloneJson(tests)
+			questions: roundTests
 		};
 	},
+	componentWillUpdate:function(props){
+		let testsId= props.params.id;
+		this.state.questions= this.roundTests(tests[testsId].data);
+		this.state.currentIndex = 0;
+		this.state.inAnswer = true;
+	},
+	roundTests: function(data){
+		let muddleData = Utils.randomTests(data);
+		return muddleData;
+	},
 	getTests:function(){
+		let testsId= this.props.params.id;
 		this.setState({
 			times:times++,
 			currentIndex: 0,
 			inAnswer: true,
-			questions: Utils.cloneJson(tests)
+			questions: this.roundTests(tests[testsId].data)
 		})
 	},
 	getScore: function() {
@@ -66,7 +81,7 @@ var TestForm = React.createClass({
 			self = this;
 		var cons = [];
 		const q = self.state.questions,
-			current_type = this.state.questions[this.state.currentIndex].type
+			current_type = q[self.state.currentIndex].type;
 		for(var i = 0; i < q.length; i++) {
 			if(i % 6 === 0) {
 				cons.push([{
@@ -94,10 +109,10 @@ var TestForm = React.createClass({
 				    {
 				    	current_type === 'S'?
 				    	<TestSingleTable key={this.state.currentIndex + new Date().getTime()} inAnswer={this.state.inAnswer}
-			      			question={this.state.questions} index={this.state.currentIndex}
+			      			question={this.state.questions} index={this.state.currentIndex} times={this.state.times}
 			      			nextQuestion={this.nextQuestion} prevQuestion={this.prevQuestion}/> :
 			      		<TestMultipleTable key={this.state.currentIndex + new Date().getTime()} inAnswer={this.state.inAnswer}
-			      			question={this.state.questions} index={this.state.currentIndex}
+			      			question={this.state.questions} index={this.state.currentIndex} times={this.state.times}
 			      			nextQuestion={this.nextQuestion} prevQuestion={this.prevQuestion}/>
 				    }
 			      	</div>
