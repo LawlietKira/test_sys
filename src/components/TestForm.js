@@ -99,6 +99,7 @@ var TestForm = React.createClass({
 		}
 		return(
 			<div>
+				<div style={{textAlign:'center',width:'800px',fontSize:'2em',marginBottom:'20px'}}>{this.props.location.query.title}</div>
 			    <Form layout="inline" >
 			        <Button type="primary" style={{marginLeft:'80px'}} onClick={this.getTests}>获取题目</Button>
 			        <Button type="primary" style={{marginLeft:'80px'}} onClick={this.getScore}>提交</Button>

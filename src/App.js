@@ -34,7 +34,10 @@ class App extends React.Component {
 										<Menu.Item key={index + 1}>
 											<Icon type="appstore-o" />
 											<span className="nav-text">{item}</span>
-											<Link to={"/testForm/" + index}></Link>
+											<Link to={{
+												pathname:"/testForm/" + index,
+												query:{title: item}
+											}}></Link>
 									    </Menu.Item>
 									)
 								})

@@ -9,7 +9,7 @@ XlsxUtils.parse = function(filename){
 	var list = xlsx2json.parse(filename);
 	var data = []
 	list[0].data.forEach(function(item, index){
-		if(index > 0){
+		if(index > 0 && item[0] && item[0].trim().length > 0){
 			var temp = {
 				question: item[0],
 				answers:item.slice(2),

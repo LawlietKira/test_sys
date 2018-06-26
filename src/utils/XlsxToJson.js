@@ -27,7 +27,7 @@ var fileToJson = function(list = []){
 		return d;
 	});
 	data.sort(function(a,b){
-		return a.name < b.name;
+		return a.name.localeCompare(b.name,'zh');
 	});
 	return data;
 }
