@@ -41,7 +41,9 @@ Utils.cloneJson = function(json) {
 Utils.randomTests = function(data) {
 	var cloneData = Utils.cloneJson(data);
 	var finalData = randomArr(cloneData);
-	finalData.forEach(randomTest);
+	if(Constant.CHOSEN_RANDOM){
+		finalData.forEach(randomTest);
+	}
 	return finalData;
 }
 //单题选项乱序
