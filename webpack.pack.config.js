@@ -1,12 +1,13 @@
 
 let webpack = require('webpack'),
-    HtmlWebpackPlugin = require('html-webpack-plugin');
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: ['./index.js'],
     output: {
         path: __dirname + '/build',
-        filename: 'bundle.js'
+        filename: 'bundle.[hash:8].js'
     },
     module: {
         rules: [
@@ -33,6 +34,7 @@ module.exports = {
         ]
     },
 	plugins: [
+		new CleanWebpackPlugin(['build']),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './index.html'
