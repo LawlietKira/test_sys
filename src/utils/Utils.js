@@ -41,6 +41,7 @@ Utils.cloneJson = function(json) {
 Utils.randomTests = function(data) {
 	var cloneData = Utils.cloneJson(data);
 	var finalData = randomArr(cloneData);
+//	var finalData = cloneData;
 	if(Constant.CHOSEN_RANDOM){
 		finalData.forEach(randomTest);
 	}

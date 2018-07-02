@@ -33,6 +33,7 @@ var TestSingleTable = React.createClass({
 //		this.state.disabled = this.props.inAnswer === true ? false : true
 	},
 	onChange: function(value){
+		value.sort();
 		this.state.question[this.state.index].myValue = value;
 		this.state.question[this.state.index].myValueNumber = value.reduce(function(pre, cur){
 			return pre + chosen_code[cur]

@@ -27,7 +27,6 @@ var TestForm = React.createClass({
 		let testsId= props.params.id;
 		this.state.questions= this.roundTests(tests[testsId].data);
 		this.state.currentIndex = 0;
-		this.state.inAnswer = true;
 	},
 	roundTests: function(data){
 		let muddleData = Utils.randomTests(data);

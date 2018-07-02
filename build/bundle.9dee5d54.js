@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "5aeb993bb93195fb0b77"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9dee5d543187f9999c47"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -9387,6 +9387,7 @@ Utils.cloneJson = function (json) {
 Utils.randomTests = function (data) {
 	var cloneData = Utils.cloneJson(data);
 	var finalData = randomArr(cloneData);
+	//	var finalData = cloneData;
 	if (Constant.CHOSEN_RANDOM) {
 		finalData.forEach(randomTest);
 	}
@@ -26813,7 +26814,6 @@ var TestForm = _react2.default.createClass({
 		var testsId = props.params.id;
 		this.state.questions = this.roundTests(tests[testsId].data);
 		this.state.currentIndex = 0;
-		this.state.inAnswer = true;
 	},
 	roundTests: function roundTests(data) {
 		var muddleData = Utils.randomTests(data);
@@ -27046,6 +27046,7 @@ var TestSingleTable = _react2.default.createClass({
 		//		this.state.disabled = this.props.inAnswer === true ? false : true
 	},
 	onChange: function onChange(value) {
+		value.sort();
 		this.state.question[this.state.index].myValue = value;
 		this.state.question[this.state.index].myValueNumber = value.reduce(function (pre, cur) {
 			return pre + chosen_code[cur];
