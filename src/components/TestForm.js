@@ -9,8 +9,7 @@ import TestAnswerIcon from './TestAnswerIcon'
 var Utils = require('../utils/Utils.js')
 
 var tests = require('../../assets/json/tests.json')
-const FormItem = Form.Item,
-	current_date = new Date().toLocaleDateString();
+const FormItem = Form.Item;
 var times = 1;
 var TestForm = React.createClass({
 	getInitialState: function() {
@@ -46,16 +45,11 @@ var TestForm = React.createClass({
 		})
 	},
 	getScore: function() {
-		let certify = this.state.certify;
-		if(certify){
-			let q = this.state.questions;
-			Utils.getScore(q);
-			this.setState({
-				inAnswer: false
-			})
-		}else{
-			message.warning('未认证用户不能查询答案！');
-		}
+		let q = this.state.questions;
+		Utils.getScore(q);
+		this.setState({
+			inAnswer: false
+		})
 	},
 	getScoreView:function(){
 		let score = this.state.questions.reduce(function(pre,cur){
@@ -95,9 +89,7 @@ var TestForm = React.createClass({
 	},
 	render: function() {
 		const { getFieldDecorator } = this.props.form,
-			self = this,
-			certify = localStorage.getItem('certify');
-		self.state.certify = certify === Utils.getCertify();
+			self = this;
 		
 		var cons = [];
 		const q = self.state.questions,

@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7ca3861d9b91d626b876"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "21a2f8a3c66999597258"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -22986,7 +22986,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   _react2.default.createElement(
     _reactRouter.Route,
     { path: '/', component: _App2.default },
-    _react2.default.createElement(_reactRouter.Route, { path: '/authority', component: _TestAuthority2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: '/testForm/:id', component: _TestForm2.default })
   )
 ), document.getElementById('root'));
@@ -27772,7 +27771,7 @@ var App = function (_React$Component) {
 					{ id: 'nav' },
 					_react2.default.createElement(
 						_reactRouter.Link,
-						{ to: '/authority' },
+						{ to: '/' },
 						_react2.default.createElement('img', { src: _logo2.default, id: 'logo' })
 					),
 					_react2.default.createElement(
@@ -28066,13 +28065,13 @@ var _button = __webpack_require__(71);
 
 var _button2 = _interopRequireDefault(_button);
 
-var _tag = __webpack_require__(294);
-
-var _tag2 = _interopRequireDefault(_tag);
-
 var _message2 = __webpack_require__(287);
 
 var _message3 = _interopRequireDefault(_message2);
+
+var _tag = __webpack_require__(294);
+
+var _tag2 = _interopRequireDefault(_tag);
 
 var _form = __webpack_require__(59);
 
@@ -28088,9 +28087,9 @@ __webpack_require__(172);
 
 __webpack_require__(72);
 
-__webpack_require__(295);
-
 __webpack_require__(288);
+
+__webpack_require__(295);
 
 __webpack_require__(60);
 
@@ -28123,8 +28122,7 @@ var Header = _layout2.default.Header,
 var Utils = __webpack_require__(74);
 
 var tests = __webpack_require__(168);
-var FormItem = _form2.default.Item,
-    current_date = new Date().toLocaleDateString();
+var FormItem = _form2.default.Item;
 var times = 1;
 var TestForm = _react2.default.createClass({
 	displayName: 'TestForm',
@@ -28162,16 +28160,11 @@ var TestForm = _react2.default.createClass({
 		});
 	},
 	getScore: function getScore() {
-		var certify = this.state.certify;
-		if (certify) {
-			var q = this.state.questions;
-			Utils.getScore(q);
-			this.setState({
-				inAnswer: false
-			});
-		} else {
-			_message3.default.warning('未认证用户不能查询答案！');
-		}
+		var q = this.state.questions;
+		Utils.getScore(q);
+		this.setState({
+			inAnswer: false
+		});
 	},
 	getScoreView: function getScoreView() {
 		var score = this.state.questions.reduce(function (pre, cur) {
@@ -28221,10 +28214,8 @@ var TestForm = _react2.default.createClass({
 	},
 	render: function render() {
 		var getFieldDecorator = this.props.form.getFieldDecorator,
-		    self = this,
-		    certify = localStorage.getItem('certify');
+		    self = this;
 
-		self.state.certify = certify === Utils.getCertify();
 
 		var cons = [];
 		var q = self.state.questions,

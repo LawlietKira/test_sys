@@ -8,7 +8,6 @@ import TestAuthority from './src/components/TestAuthority'
 render((
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-    	<Route path="/authority" component={TestAuthority}/>
 	    <Route path="/testForm/:id" component={TestForm}/>
     </Route> 
   </Router>
