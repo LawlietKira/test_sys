@@ -25,7 +25,7 @@ class App extends React.Component {
 		return(
 			<div>
 			  	<div id="nav">
-					<Link to="/"><img src={logo} id="logo" /></Link>
+					<Link to="/authority"><img src={logo} id="logo" /></Link>
 					<Menu theme="dark" style={{width: 200}} mode="inline">
 						<SubMenu key="menu1" title={<span><Icon type="calendar" /><span>考题信息</span></span>}>
 							{
@@ -48,10 +48,10 @@ class App extends React.Component {
 				<div id="content">
 					<Menu mode="horizontal">
 						<SubMenu title={<span><Icon type="user"/>{ this.state.username }</span>}>
-						<Menu.Item key="setting:1"><Link to="/">退出</Link></Menu.Item>
-						    </SubMenu>
-						</Menu>
-						<div style={{ margin: '24px 16px 0' }}>
+							<Menu.Item key="setting:1"><Link to="/">退出</Link></Menu.Item>
+						</SubMenu>
+					</Menu>
+					<div style={{ margin: '24px 16px 0' }}>
 				  		<div style={{ padding: 24, background: '#fff', minHeight: 720 }}>
 				        	{this.props.children}
 				      	</div>
