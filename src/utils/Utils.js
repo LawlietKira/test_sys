@@ -59,7 +59,7 @@ Utils.getCertify = function(){
 		var tempNumber = Number(date.substr(2*i, 2));
 		code += base_number[tempNumber%base_number_length]
 	}
-	return code;
+	return code.toLowerCase();
 }
 
 var disturb = function(number){

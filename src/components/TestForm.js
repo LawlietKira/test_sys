@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Table, DatePicker, Form, Row, Col, Input, Button, Icon, message } from 'antd';
-import { Layout } from 'antd';
+import { Layout,Tag } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
 import TestSingleTable from './TestSingleTable'
 import TestMultipleTable from './TestMultipleTable'
@@ -24,6 +24,9 @@ var TestForm = React.createClass({
 			questions: roundTests
 		};
 	},
+	componentWillReceiveProps:function(props){
+		this.state.inAnswer = true;
+	},
 	componentWillUpdate:function(props){
 		let testsId= props.params.id;
 		this.state.questions= this.roundTests(tests[testsId].data);
@@ -46,7 +49,6 @@ var TestForm = React.createClass({
 		let certify = this.state.certify;
 		if(certify){
 			let q = this.state.questions;
-	//		console.log(q)
 			Utils.getScore(q);
 			this.setState({
 				inAnswer: false
@@ -54,6 +56,16 @@ var TestForm = React.createClass({
 		}else{
 			message.warning('未认证用户不能查询答案！');
 		}
+	},
+	getScoreView:function(){
+		let score = this.state.questions.reduce(function(pre,cur){
+			return pre + (cur.result === true);
+		}, 0);
+		let scoreTag = '';
+		if(!this.state.inAnswer){
+			scoreTag = <div><Tag color="red">{score}/{this.state.questions.length}</Tag></div>;
+		}
+		return scoreTag;
 	},
 	nextQuestion: function() {
 		var c = this.state.currentIndex + 1;
@@ -84,8 +96,8 @@ var TestForm = React.createClass({
 	render: function() {
 		const { getFieldDecorator } = this.props.form,
 			self = this,
-			certify = localStorage.getItem('testCertify')||{};
-		self.state.certify = certify[current_date] || false;
+			certify = localStorage.getItem('certify');
+		self.state.certify = certify === Utils.getCertify();
 		
 		var cons = [];
 		const q = self.state.questions,
@@ -107,7 +119,9 @@ var TestForm = React.createClass({
 		}
 		return(
 			<div>
-				<div style={{textAlign:'center',width:'800px',fontSize:'2em',marginBottom:'20px'}}>{this.props.location.query.title}</div>
+				<div style={{textAlign:'center',width:'800px',fontSize:'2em',marginBottom:'20px'}}>
+					{this.props.location.query.title}{this.getScoreView()}
+				</div>
 			    <Form layout="inline" >
 			        <Button type="primary" style={{marginLeft:'80px'}} onClick={this.getTests}>获取题目</Button>
 			        <Button type="primary" style={{marginLeft:'80px'}} onClick={this.getScore}>提交</Button>
